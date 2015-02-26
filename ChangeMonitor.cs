@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System;
 
 public class ChangeMonitor {
@@ -64,5 +63,30 @@ public class ChangeMonitor {
 		}
 		firstPassPending = false;
 		return result;
+	}
+
+	public static bool ArrayEvaluator<T>(T[] alfa, T[] bravo)
+	{
+		if(alfa != bravo)
+		{
+			return true;
+		}
+		else if(alfa.Length != bravo.Length)
+		{
+			return true;
+		}
+		else if(alfa.Length > 0) {
+			var result = false;
+			for(int i = 0; i < alfa.Length && !result; i++)
+			{
+				var a = alfa[i];
+				var b = bravo[i];
+				result |= a == null ? b != null : !a.Equals(b);
+			}
+			return result;
+		}
+		else {
+			return false;
+		}
 	}
 }
